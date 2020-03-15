@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import logo from "../../images/logo.png";
 import { Menu } from "antd";
 import {
   MailOutlined,
@@ -23,23 +25,20 @@ export default class App extends Component {
   render() {
     return (
       <Menu
-        style={{
-          boxShadow:
-            "0 3px 6px -4px rgba(0, 0, 0, 1), 0 6px 16px 0 rgba(0, 0, 0, 0.3), 0 9px 28px 8px rgba(0, 0, 0, 0.05)"
-        }}
         className="navbar"
         theme="dark"
         onClick={this.handleClick}
         selectedKeys={[this.state.current]}
         mode="horizontal"
       >
+        <Menu.Item key="2">hello</Menu.Item>
         <Menu.Item key="mail">
           <MailOutlined />
           Navigation One
         </Menu.Item>
         <Menu.Item key="cool">
           <MailOutlined />
-          Navigation One
+          <Link to="/post">Post</Link>
         </Menu.Item>
         <Menu.Item key="fun">
           <MailOutlined />

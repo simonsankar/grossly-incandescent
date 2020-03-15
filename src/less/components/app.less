@@ -1,0 +1,25 @@
+.app {
+  background-image: url(../../images/logo.svg);
+  background-size: cover;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: @WHITE;
+
+  &__content {
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    // Content's children
+    .ant-layout {
+      border-radius: 10px;
+    }
+    .navbar {
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+    }
+    .ant-layout-footer {
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+  }
+}
