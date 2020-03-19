@@ -2,21 +2,14 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { Menu } from "antd";
-import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined
-} from "@ant-design/icons";
-
-const { SubMenu } = Menu;
+import { BookOutlined, FireFilled, SearchOutlined } from "@ant-design/icons";
 
 export default class App extends Component {
   state = {
-    current: "mail"
+    current: "home"
   };
 
   handleClick = e => {
-    console.log("click ", e);
     this.setState({
       current: e.key
     });
@@ -31,22 +24,17 @@ export default class App extends Component {
         selectedKeys={[this.state.current]}
         mode="horizontal"
       >
-        <Menu.Item key="2">hello</Menu.Item>
-        <Menu.Item key="mail">
-          <MailOutlined />
-          Navigation One
-        </Menu.Item>
-        <Menu.Item key="cool">
-          <MailOutlined />
-          <Link to="/post">Post</Link>
-        </Menu.Item>
-        <Menu.Item key="fun">
-          <MailOutlined />
-          Navigation One
+        <Menu.Item className="navbar__home" key="home">
+          <FireFilled style={{ color: "#8c7343" }} />
+          <Link to="/">Grossly Incandescent</Link>
         </Menu.Item>
         <Menu.Item key="sun">
-          <MailOutlined />
-          Navigation One
+          Search
+          <SearchOutlined />
+        </Menu.Item>
+        <Menu.Item key="cool">
+          <Link to="/post">Posts</Link>
+          <BookOutlined />
         </Menu.Item>
       </Menu>
     );

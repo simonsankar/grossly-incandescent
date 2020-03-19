@@ -3,6 +3,23 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 6px -4px,
     rgba(0, 0, 0, 0.08) 0px 6px 16px 0px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px !important;
 
+  &__home.ant-menu-item,
+  &__home.ant-menu-item-selected {
+    span {
+      margin-right: 10px !important;
+      margin-left: 0px !important;
+    }
+  }
+  .ant-menu-item,
+  .ant-menu-item-selected {
+    text-transform: uppercase;
+    border-radius: 10px;
+
+    span {
+      margin-right: 0px;
+      margin-left: 10px;
+    }
+  }
   .ant-menu-item.ant-menu-item-selected {
     background-color: @SECONDARY_COLOUR !important;
     &:after {

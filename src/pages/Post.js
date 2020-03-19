@@ -24,7 +24,7 @@ export default class Post extends Component {
   render() {
     const { source } = this.state;
     return (
-      <div>
+      <div className="post">
         {source !== "" ? <ReactMarkdown source={source} /> : "loading..."}
       </div>
     );
