@@ -13,7 +13,7 @@ export default class Post extends Component {
     fetch(reduxMD)
       .then(res => {
         res.text().then(text => {
-          console.log("HIII", text);
+          console.log("The md file:", text);
 
           this.setState({ source: text });
           PrismJS.highlightAll();

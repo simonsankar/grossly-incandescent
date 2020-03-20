@@ -5,6 +5,8 @@ import { Layout, Row, Col, Divider } from "antd";
 import Navbar from "./components/Navigation/Navbar";
 import Home from "./pages/Home";
 import Post from "./pages/Post";
+import EditPost from "./pages/EditPost";
+
 const { Footer, Content } = Layout;
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/post" component={Post} />
+              <Route path="/create" component={EditPost} />
+              <Route path="/edit" component={EditPost} />
             </Switch>
           </Content>
           <Footer>
