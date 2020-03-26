@@ -3,8 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./less/main.less";
-// import "./less/prism-nord.css";
-import "./less/prism-material-oceanic.css";
+import "./less/prism-oceanic-next.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 

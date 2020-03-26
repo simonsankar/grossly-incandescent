@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { Layout, Row, Col, Divider } from "antd";
+import { Layout, Row, Col } from "antd";
 
 import Navbar from "./components/Navigation/Navbar";
 import Home from "./pages/Home";
