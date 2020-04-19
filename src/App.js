@@ -4,7 +4,8 @@ import { Layout, Row, Col } from "antd";
 
 import Navbar from "./components/Navigation/Navbar";
 import Home from "./pages/Home";
-import Post from "./pages/Post";
+import Read from "./pages/Read";
+import Posts from "./pages/Posts";
 import EditPost from "./pages/EditPost";
 
 const { Footer, Content } = Layout;
@@ -26,9 +27,10 @@ function App() {
           <Content style={{ minHeight: "calc(100vh - 106px)" }}>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/post" component={Post} />
+              <Route path="/read" component={Read} />
               <Route path="/create" component={EditPost} />
               <Route path="/edit" component={EditPost} />
+              <Route path="/posts" component={Posts} />
             </Switch>
           </Content>
           <Footer>

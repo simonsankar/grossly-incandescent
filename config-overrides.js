@@ -4,7 +4,7 @@ module.exports = override(
   fixBabelImports("import", {
     libraryName: "antd",
     libraryDirectory: "es",
-    style: true
+    style: true,
   }),
   addLessLoader({
     javascriptEnabled: true,
@@ -22,7 +22,10 @@ module.exports = override(
       "@border-radius-sm": "5px",
       "@background-color-light": "#e9ece5",
       "@table-body-sort-bg": "#22252d",
-      "@layout-footer-background": "#8c7343"
-    }
+      "@layout-footer-background": "#8c7343",
+      "@table-header-color": "#22252d",
+      "@table-header-bg": "#e0e2de",
+      "@table-row-hover-bg": "#fafafa",
+    },
   })
 );

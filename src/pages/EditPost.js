@@ -11,13 +11,11 @@ export default class EditPost extends Component {
   };
   render() {
     return (
-      <div>
-        <MdEditor
-          value=""
-          renderHTML={text => mdParser.render(text)}
-          onChange={this.handleEditorChange}
-        />
-      </div>
+      <MdEditor
+        value=""
+        renderHTML={(text) => mdParser.render(text)}
+        onChange={this.handleEditorChange}
+      />
     );
   }
 }

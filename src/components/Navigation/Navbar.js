@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
-import { BookOutlined, FireFilled, SearchOutlined } from "@ant-design/icons";
+import {
+  BookOutlined,
+  FireFilled,
+  FileTextOutlined,
+  ContainerOutlined,
+} from "@ant-design/icons";
 
 export default class App extends Component {
   state = {
-    current: "home"
+    current: "home",
   };
 
-  handleClick = e => {
+  handleClick = (e) => {
     this.setState({
-      current: e.key
+      current: e.key,
     });
   };
 
@@ -27,12 +32,17 @@ export default class App extends Component {
           <FireFilled style={{ color: "#8c7343" }} />
           <Link to="/">Grossly Incandescent</Link>
         </Menu.Item>
-        <Menu.Item key="sun">
-          Search
-          <SearchOutlined />
+
+        <Menu.Item key="posts">
+          <Link to="/posts">Posts</Link>
+          <FileTextOutlined />
         </Menu.Item>
-        <Menu.Item key="cool">
-          <Link to="/post">Posts</Link>
+        <Menu.Item key="archive">
+          <Link to="/archive">Archive</Link>
+          <ContainerOutlined />
+        </Menu.Item>
+        <Menu.Item key="projects">
+          <Link to="/projects">Projects</Link>
           <BookOutlined />
         </Menu.Item>
       </Menu>

@@ -1,11 +1,25 @@
 .home {
   &__splash {
-    height: 50vh;
+    background-image: url("../../images/logo.svg");
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 35vh;
     background-color: @SECONDARY_COLOUR;
     color: @WHITE;
   }
   &__header {
-    font-size: 90px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 80px;
     word-break: break-word;
+  }
+  &__image {
+    height: 100%;
+    width: 100%;
+  }
+  &__posts {
+    padding: 16px;
   }
 }
