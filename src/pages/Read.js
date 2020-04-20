@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import ReactMarkdown from "react-markdown";
 // PrismJS
 import PrismJS from "prismjs";
@@ -16,21 +18,16 @@ import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 
 import reduxMD from "../md/redux.md";
 
-export default class Post extends Component {
+class Read extends Component {
   state = {
-    source: ""
+    source: "# Hello! \n ## How are ya?",
   };
 
   componentDidMount() {
-    fetch(reduxMD)
-      .then(res => {
-        res.text().then(text => {
-          this.setState({ source: text });
-          console.log(PrismJS.plugins);
-          PrismJS.highlightAll();
-        });
-      })
-      .catch(err => console.log(err));
+    const { pathname } = this.props.history.location;
+    const id = pathname.replace("/read", "");
+
+    PrismJS.highlightAll();
   }
   render() {
     const { source } = this.state;
@@ -41,3 +38,5 @@ export default class Post extends Component {
     );
   }
 }
+const mapStateToProps = ({ posts }) => ({ posts });
+export default withRouter(connect(mapStateToProps)(Read));

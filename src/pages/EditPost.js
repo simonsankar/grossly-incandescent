@@ -6,16 +6,22 @@ import MarkdownIt from "markdown-it";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 export default class EditPost extends Component {
-  handleEditorChange = ({ html, text }) => {
-    console.log("handleEditorChange", html, text);
+  state = {
+    text: "",
+  };
+  handleEditorChange = ({ text }) => {
+    this.setState({ text });
   };
   render() {
     return (
-      <MdEditor
-        value=""
-        renderHTML={(text) => mdParser.render(text)}
-        onChange={this.handleEditorChange}
-      />
+      <>
+        <MdEditor
+          value=""
+          renderHTML={(text) => mdParser.render(text)}
+          onChange={this.handleEditorChange}
+        />
+        <pre>{this.state.text}</pre>
+      </>
     );
   }
 }

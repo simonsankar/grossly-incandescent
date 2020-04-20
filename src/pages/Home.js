@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getPosts } from "../state/posts/actions";
 import { Row, Col } from "antd";
 import PostsTable from "../components/Posts/PostsTable";
 
 const Home = () => {
+  const posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getPosts(dispatch, 3);
+  }, [dispatch]);
+  console.log(posts);
   return (
     <div className="home">
       <Row className="home__splash">
@@ -15,7 +24,13 @@ const Home = () => {
       </Row>
       <Row className="home__posts">
         <Col span={24}>
-          <PostsTable />
+          {posts.loading ? (
+            "Loading..."
+          ) : posts.data.length ? (
+            <PostsTable posts={posts.data} />
+          ) : (
+            "No posts found :("
+          )}
         </Col>
       </Row>
     </div>

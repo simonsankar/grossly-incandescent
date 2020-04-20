@@ -4,66 +4,44 @@ import { Table, Tag } from "antd";
 
 const { Column } = Table;
 
-const PostsTable = () => {
+const PostsTable = ({ posts }) => {
+  console.log(posts);
   return (
     <Table
-      dataSource={data}
+      dataSource={posts}
       pagination={{ position: ["bottomCenter"], pageSize: 5 }}
       footer={() => "Praise the sun"}
     >
       <Column
         title="title"
-        dataIndex="post"
+        dataIndex="details"
         key="title"
-        render={(post) => <Link to={`/read/${post.url}`}>{post.title}</Link>}
+        render={(details) => (
+          <Link to={`/read/${details.url}`}>{details.title}</Link>
+        )}
       />
       <Column
         title="tags"
-        dataIndex="tags"
+        dataIndex="details"
         key="tags"
-        render={(tags) => (
+        render={({ tags }) => (
           <span>
             {tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
+              <Tag color="#22252d" key={tag}>
+                {tag}
+              </Tag>
             ))}
           </span>
         )}
       />
-      <Column title="date" dataIndex="date" key="date" />
+      <Column
+        title="date"
+        dataIndex="details"
+        key="date"
+        render={({ date }) => <span>{date}</span>}
+      />
     </Table>
   );
 };
-const data = [
-  {
-    key: "1",
-    post: {
-      title: "Create-react-app electron starter guide",
-      url: "098123-asd-qwe",
-    },
-    date: "2020/03/19",
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    post: {
-      url: "098123-asd-qwe",
-      title: "Reason-Native with Revery UI",
-    },
-    date: "2020/03/19",
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    post: {
-      url: "098123-asd-qwe",
-      title: "React Cool tricks",
-    },
-    date: "2020/03/19",
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
 
 export default PostsTable;
