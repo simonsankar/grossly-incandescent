@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Table, Tag } from "antd";
+import { FireFilled } from "@ant-design/icons";
 
 const { Column } = Table;
 
@@ -8,9 +9,10 @@ const PostsTable = ({ posts }) => {
   console.log(posts);
   return (
     <Table
+      className="table"
       dataSource={posts}
       pagination={{ position: ["bottomCenter"], pageSize: 5 }}
-      footer={() => "Praise the sun"}
+      footer={() => <FireFilled style={{ color: "#8c7343" }} />}
     >
       <Column
         title="title"

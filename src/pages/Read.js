@@ -16,8 +16,6 @@ import "prismjs/plugins/inline-color/prism-inline-color.min.js";
 import "prismjs/plugins/line-numbers/prism-line-numbers.min.js";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 
-import reduxMD from "../md/redux.md";
-
 class Read extends Component {
   state = {
     source: "# Hello! \n ## How are ya?",
