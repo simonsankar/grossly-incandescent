@@ -28,9 +28,10 @@ export default class App extends Component {
         selectedKeys={[this.state.current]}
         mode="horizontal"
       >
-        <Menu.Item className="navbar__home" key="home">
-          <FireFilled style={{ color: "#8c7343" }} />
-          <Link to="/">Grossly Incandescent</Link>
+        <Menu.Item key="home">
+          <Link to="/">
+            <FireFilled style={{ color: "#8c7343", margin: 0 }} />
+          </Link>
         </Menu.Item>
 
         <Menu.Item key="posts">
