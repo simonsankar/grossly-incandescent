@@ -29,7 +29,7 @@ const PostsTable = ({ posts }) => {
         render={({ tags }) => (
           <span>
             {tags.map((tag) => (
-              <Tag color="#22252d" key={tag}>
+              <Tag color="#8c7343" key={tag}>
                 {tag}
               </Tag>
             ))}

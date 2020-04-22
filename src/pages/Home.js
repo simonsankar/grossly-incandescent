@@ -14,11 +14,20 @@ const Home = () => {
   console.log(posts);
   return (
     <div className="home">
-      <Row className="home__splash">
-        <Col xs={24} sm={12} md={10} lg={10}>
-          <PageHeader title={<Avatar src={avatar} size={60} />} />
+      <Row className="home__splash" align="middle">
+        <Col xs={24} sm={10} md={10} lg={10}>
+          <PageHeader
+            className="home__bio"
+            title={<Avatar src={avatar} size={50} />}
+            subTitle={
+              <div>
+                <h2>Simon Sankar</h2>
+                <span>lorem ipsum</span>
+              </div>
+            }
+          />
         </Col>
-        <Col xs={24} sm={12} md={14} lg={14}>
+        <Col xs={24} sm={14} md={14} lg={14}>
           <div className="home__header">Grossly Incandescent</div>
         </Col>
       </Row>
