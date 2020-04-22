@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { filter } from "lodash";
 import ReactMarkdown from "react-markdown";
 // PrismJS
 import PrismJS from "prismjs";
@@ -23,8 +24,11 @@ class Read extends Component {
 
   componentDidMount() {
     const { pathname } = this.props.history.location;
-    const id = pathname.replace("/read", "");
-
+    const id = pathname.replace("/read/", "");
+    console.log(id, this.props.posts);
+    let post = filter(this.props.posts.data, (post) => post.details.url === id);
+    this.setState({ source: post[0].data.text });
+    console.log(post);
     PrismJS.highlightAll();
   }
   render() {

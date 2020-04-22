@@ -9,6 +9,7 @@ const PostsTable = ({ posts }) => {
   console.log(posts);
   return (
     <Table
+      rowKey="id"
       className="table"
       dataSource={posts}
       pagination={{ position: ["bottomCenter"], pageSize: 5 }}
