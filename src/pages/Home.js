@@ -1,9 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../state/posts/actions";
-import { Row, Col, Avatar, PageHeader } from "antd";
+import { Row, Col, Avatar, PageHeader, Divider } from "antd";
 import PostsTable from "../components/Posts/PostsTable";
+import { GithubOutlined, createFromIconfontCN } from "@ant-design/icons";
 import avatar from "../images/avatar.svg";
+
+const IconFont = createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js",
+});
+
 const Home = () => {
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
@@ -22,7 +28,10 @@ const Home = () => {
             subTitle={
               <div>
                 <h2>Simon Sankar</h2>
-                <span>lorem ipsum</span>
+                <div>Dev • Messi • Minecraft</div>
+                <span>I like to code sometimes</span>
+                <Divider style={{ margin: "10px 0px" }} />
+                <GithubOutlined /> <IconFont type="icon-discord" />
               </div>
             }
           />
