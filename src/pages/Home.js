@@ -2,24 +2,26 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../state/posts/actions";
-import { Row, Col, Avatar, PageHeader, Divider, Space } from "antd";
+import { logoutUser } from "../state/user/actions";
+import { Row, Col, Avatar, PageHeader, Divider, Space, Button } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
   faTwitch,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import PostsTable from "../components/Posts/PostsTable";
 import avatar from "../images/avatar.svg";
 
 const Home = () => {
-  const posts = useSelector((state) => state.posts);
+  const { posts, user } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
     getPosts(dispatch, 3);
   }, [dispatch]);
-  console.log(posts);
+
   return (
     <div className="home">
       <Row className="home__splash" align="middle">
@@ -27,9 +29,17 @@ const Home = () => {
           <PageHeader
             className="home__bio"
             title={
-              <Link to="/login">
-                <Avatar className="home__image" src={avatar} size={60} />
-              </Link>
+              user.data ? (
+                <Button
+                  type="primary"
+                  icon={<FontAwesomeIcon icon={faSignOutAlt} />}
+                  onClick={() => logoutUser(dispatch)}
+                ></Button>
+              ) : (
+                <Link to="/login">
+                  <Avatar className="home__image" src={avatar} size={60} />
+                </Link>
+              )
             }
             subTitle={
               <div>

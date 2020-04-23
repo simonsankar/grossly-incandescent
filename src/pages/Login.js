@@ -1,9 +1,18 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { loginUser } from "../state/user/actions";
 import { Row, Col, Card, Form, Input, Button } from "antd";
 
-const Login = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+const Login = (props) => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const onFinish = ({ email, password }) => {
+    console.log("Success:", email, password);
+    loginUser(dispatch, email, password).then(() =>
+      props.history.push("/edit")
+    );
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -16,7 +25,13 @@ const Login = () => {
         <Card
           className="login__form"
           title="Login"
-          extra={"Are you sure you're Simon?"}
+          extra={
+            user.loading
+              ? "Loading..."
+              : user.error
+              ? `${user.error.message}`
+              : "Are you sure you're Simon?"
+          }
         >
           <Form
             name="basic"
@@ -25,8 +40,8 @@ const Login = () => {
             onFinishFailed={onFinishFailed}
           >
             <Form.Item
-              label="Username"
-              name="username"
+              label="Email"
+              name="email"
               rules={[
                 { required: true, message: "Please input your username!" },
               ]}
@@ -56,4 +71,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

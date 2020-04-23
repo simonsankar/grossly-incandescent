@@ -1,5 +1,7 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { useSelector, useDispatch, useStore } from "react-redux";
+import { getCurrentUser } from "./state/user/actions";
 import { Layout, Row, Col } from "antd";
 
 import Navbar from "./components/Navigation/Navbar";
@@ -11,7 +13,23 @@ import Login from "./pages/Login";
 
 const { Footer, Content } = Layout;
 
-function App() {
+const App = () => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getCurrentUser(dispatch);
+  }, [dispatch]);
+
+  const PrivateRoute = ({ component: Component, user, ...rest }) => (
+    <Route
+      {...rest}
+      render={(props) => {
+        console.log("the user?", user.data);
+        return user.data ? <Redirect to="/edit" /> : <Component {...props} />;
+      }}
+    />
+  );
+
   return (
     <Row className="app" justify="center">
       <Col
@@ -32,7 +50,7 @@ function App() {
               <Route path="/create" component={EditPost} />
               <Route path="/edit" component={EditPost} />
               <Route path="/posts" component={Posts} />
-              <Route path="/login" component={Login} />
+              <PrivateRoute path="/login" user={user} component={Login} />
             </Switch>
           </Content>
           <Footer>
@@ -47,6 +65,6 @@ function App() {
       </Col>
     </Row>
   );
-}
+};
 
 export default App;

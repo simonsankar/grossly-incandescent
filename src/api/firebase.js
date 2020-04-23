@@ -1,4 +1,5 @@
 import Firebase from "firebase/app";
+import "firebase/auth";
 import "firebase/database";
 import "firebase/storage";
 
@@ -14,6 +15,19 @@ const config = {
 };
 Firebase.initializeApp(config);
 
+// Authentication helpers
+export const authRef = {
+  login: (email, password) => {
+    return Firebase.auth().signInWithEmailAndPassword(email, password);
+  },
+
+  logout: () => {
+    return Firebase.auth().signOut();
+  },
+  getCurrentUser: (func) => {
+    return Firebase.auth().onAuthStateChanged(func);
+  },
+};
 // Database references
 const databaseRef = Firebase.database().ref();
 
