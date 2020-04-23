@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../state/posts/actions";
-import { Row, Col, Avatar, PageHeader, Divider } from "antd";
+import { Row, Col, Avatar, PageHeader, Divider, Space } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGithub,
+  faTwitch,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 import PostsTable from "../components/Posts/PostsTable";
-import { GithubOutlined, createFromIconfontCN } from "@ant-design/icons";
 import avatar from "../images/avatar.svg";
-
-const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js",
-});
 
 const Home = () => {
   const posts = useSelector((state) => state.posts);
@@ -24,14 +26,24 @@ const Home = () => {
         <Col xs={24} sm={10} md={10} lg={10}>
           <PageHeader
             className="home__bio"
-            title={<Avatar src={avatar} size={50} />}
+            title={
+              <Link to="/login">
+                <Avatar src={avatar} size={50} />
+              </Link>
+            }
             subTitle={
               <div>
-                <h2>Simon Sankar</h2>
+                <h1>Simon Sankar</h1>
                 <div>Dev • Messi • Minecraft</div>
                 <span>I like to code sometimes</span>
                 <Divider style={{ margin: "10px 0px" }} />
-                <GithubOutlined /> <IconFont type="icon-discord" />
+                <div>
+                  <Space size="middle">
+                    <FontAwesomeIcon icon={faGithub} />
+                    <FontAwesomeIcon icon={faYoutube} />
+                    <FontAwesomeIcon icon={faTwitch} />
+                  </Space>
+                </div>
               </div>
             }
           />
