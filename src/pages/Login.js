@@ -5,7 +5,7 @@ import { loginUser } from "../state/user/actions";
 import { Row, Col, Card, Form, Input, Button } from "antd";
 
 const Login = (props) => {
-  const user = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const onFinish = ({ email, password }) => {

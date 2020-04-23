@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { useSelector, useDispatch, useStore } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getCurrentUser } from "./state/user/actions";
 import { Layout, Row, Col } from "antd";
 
@@ -14,7 +14,7 @@ import Login from "./pages/Login";
 const { Footer, Content } = Layout;
 
 const App = () => {
-  const user = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     getCurrentUser(dispatch);
