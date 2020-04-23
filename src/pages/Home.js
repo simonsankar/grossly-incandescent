@@ -28,7 +28,7 @@ const Home = () => {
             className="home__bio"
             title={
               <Link to="/login">
-                <Avatar src={avatar} size={50} />
+                <Avatar className="home__image" src={avatar} size={60} />
               </Link>
             }
             subTitle={

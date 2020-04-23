@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Read from "./pages/Read";
 import Posts from "./pages/Posts";
 import EditPost from "./pages/EditPost";
+import Login from "./pages/Login";
 
 const { Footer, Content } = Layout;
 
@@ -31,6 +32,7 @@ function App() {
               <Route path="/create" component={EditPost} />
               <Route path="/edit" component={EditPost} />
               <Route path="/posts" component={Posts} />
+              <Route path="/login" component={Login} />
             </Switch>
           </Content>
           <Footer>

@@ -39,9 +39,15 @@
       color: @WHITE;
     }
   }
-  &__image {
+  &__image > img {
+    padding: 5px;
     height: 100%;
     width: 100%;
+    border-radius: 100% !important;
+    transition: all ease-in 0.2s;
+    &:hover {
+      background-color: rgba(@WHITE, 0.05);
+    }
   }
   &__posts {
     padding: 16px;
