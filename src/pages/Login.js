@@ -21,7 +21,7 @@ const Login = (props) => {
 
   return (
     <Row className="login" align="middle" justify="center">
-      <Col xs={24} sm={22} md={18} lg={12}>
+      <Col xs={22} sm={20} md={18} lg={12}>
         <Card
           className="login__form"
           title="Login"
