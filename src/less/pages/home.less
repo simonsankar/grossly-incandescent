@@ -4,9 +4,12 @@
     background-origin: border-box;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 35vh;
+    height: auto;
     background-color: @SECONDARY_COLOUR;
     color: rgba(@SECONDARY_WHITE, 0.5);
+    .media-md({
+          height: 35vh;
+    });
   }
   &__header {
     font-family: OptimusPrinceps;
@@ -32,10 +35,6 @@
     });
   }
   &__bio {
-    h1 {
-      font-size: 40px;
-      line-height: 40px;
-    }
     h1,
     h2,
     h3,
