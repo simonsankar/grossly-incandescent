@@ -9,6 +9,7 @@ const PostsTable = ({ posts }) => {
   console.log(posts);
   return (
     <Table
+      size="small"
       rowKey="id"
       className="table"
       dataSource={posts}
