@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getPosts } from "../state/posts/actions";
 import { Row, Col } from "antd";
 import PostsTable from "../components/Posts/PostsTable";
 
 const Posts = () => {
+  const { posts } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getPosts(dispatch, 10);
+  }, [dispatch]);
   return (
     <div className="posts">
-      <Row>
+      <Row className="posts__table">
         <Col span={24}>
-          <PostsTable />
+          {posts.loading ? (
+            "Loading..."
+          ) : posts.data.length ? (
+            <PostsTable posts={posts.data} />
+          ) : (
+            "No posts found :("
+          )}
         </Col>
       </Row>
     </div>

@@ -24,8 +24,9 @@ const App = () => {
     <Route
       {...rest}
       render={(props) => {
-        console.log("the user?", user.data);
-        return user.data ? <Redirect to="/edit" /> : <Component {...props} />;
+        console.log("Current user?", user.data);
+        if (user.data === null) return <Redirect to="/login" />;
+        else return <Component {...props} />;
       }}
     />
   );
@@ -47,10 +48,9 @@ const App = () => {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/read" component={Read} />
-              <Route path="/create" component={EditPost} />
-              <Route path="/edit" component={EditPost} />
               <Route path="/posts" component={Posts} />
-              <PrivateRoute path="/login" user={user} component={Login} />
+              <Route path="/login" component={Login} />
+              <PrivateRoute path="/edit" user={user} component={EditPost} />
             </Switch>
           </Content>
           <Footer>
