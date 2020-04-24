@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div className="home">
       <Row className="home__splash" align="middle">
-        <Col xs={24} sm={10} md={10} lg={10}>
+        <Col xs={24} sm={12} md={12} lg={10}>
           <PageHeader
             className="home__bio"
             title={
@@ -45,7 +45,7 @@ const Home = () => {
               <div>
                 <h1>Simon Sankar</h1>
                 <div>Dev • Messi • Minecraft</div>
-                <span>I like to code sometimes</span>
+                <p>I am not sure what to put here</p>
                 <Divider style={{ margin: "10px 0px" }} />
                 <div>
                   <Space size="middle">
@@ -58,7 +58,7 @@ const Home = () => {
             }
           />
         </Col>
-        <Col xs={24} sm={14} md={14} lg={14}>
+        <Col xs={24} sm={12} md={12} lg={14}>
           <div className="home__header">Grossly Incandescent</div>
         </Col>
       </Row>

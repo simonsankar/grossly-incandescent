@@ -22,13 +22,13 @@
         text-align: center;
     });
     .media-sm({
-      font-size: 50px;
+      font-size: 45px;
     });
     .media-md({
-      font-size: 60px;
+      font-size: 50px;
     });
     .media-lg({
-      font-size: 70px;
+      font-size: 60px;
     });
     .media-xl({
       font-size: 75px;
@@ -40,6 +40,19 @@
     h3,
     span {
       color: @WHITE;
+    }
+
+    h1 {
+      .media-md({
+        font-size: 25px;
+      });
+      .media-lg({
+        font-size: 30px;
+      });
+    }
+    div,
+    span {
+      word-break: break-all;
     }
   }
   &__image > img {
