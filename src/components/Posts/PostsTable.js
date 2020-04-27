@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Table, Tag } from "antd";
-import { FireFilled } from "@ant-design/icons";
+import { Table, Tag, Button, Space } from "antd";
+import { FireFilled, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const { Column } = Table;
 
-const PostsTable = ({ posts }) => {
+const PostsTable = ({ posts, isAuth }) => {
   console.log(posts);
   return (
     <Table
@@ -44,6 +44,24 @@ const PostsTable = ({ posts }) => {
         key="date"
         render={({ date }) => <span>{date}</span>}
       />
+      {isAuth && (
+        <Column
+          title="actions"
+          dataIndex="details"
+          key="actions"
+          render={(details) => (
+            <Space size="small">
+              <Button
+                shape="circle"
+                type="primary"
+                icon={<EditOutlined />}
+                href={`/edit/${details.url}`}
+              />
+              <Button shape="circle" type="danger" icon={<DeleteOutlined />} />
+            </Space>
+          )}
+        />
+      )}
     </Table>
   );
 };

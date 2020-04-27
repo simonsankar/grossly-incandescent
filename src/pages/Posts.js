@@ -5,7 +5,7 @@ import { Row, Col } from "antd";
 import PostsTable from "../components/Posts/PostsTable";
 
 const Posts = () => {
-  const { posts } = useSelector((state) => state);
+  const { posts, user } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Posts = () => {
           {posts.loading ? (
             "Loading..."
           ) : posts.data.length ? (
-            <PostsTable posts={posts.data} />
+            <PostsTable posts={posts.data} isAuth={user.data !== null} />
           ) : (
             "No posts found :("
           )}

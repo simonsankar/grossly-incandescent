@@ -31,6 +31,7 @@ const Home = () => {
             title={
               user.data ? (
                 <Button
+                  shape="circle"
                   type="primary"
                   icon={<FontAwesomeIcon icon={faSignOutAlt} />}
                   onClick={() => logoutUser(dispatch)}
@@ -67,7 +68,7 @@ const Home = () => {
           {posts.loading ? (
             "Loading..."
           ) : posts.data.length ? (
-            <PostsTable posts={posts.data} />
+            <PostsTable posts={posts.data} isAuth={user.data !== null} />
           ) : (
             "No posts found :("
           )}

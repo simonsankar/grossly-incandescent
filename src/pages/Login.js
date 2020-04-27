@@ -11,7 +11,7 @@ const Login = (props) => {
   const onFinish = ({ email, password }) => {
     console.log("Success:", email, password);
     loginUser(dispatch, email, password).then(() =>
-      props.history.push("/edit")
+      props.history.push("/archive")
     );
   };
 
