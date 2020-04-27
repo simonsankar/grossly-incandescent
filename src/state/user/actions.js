@@ -3,15 +3,12 @@ import { authRef } from "../../api/firebase";
 
 export const loginUser = (dispatch, email, password) => {
   dispatch({ type: USER_LOGIN.PENDING });
-  return authRef
+  authRef
     .login(email, password)
     .then(({ user }) => {
       dispatch({
         type: USER_LOGIN.SUCCESS,
         payload: user,
-      });
-      return new Promise((resolve, reject) => {
-        resolve("Redirecting is ok");
       });
     })
     .catch((error) => dispatch({ type: USER_LOGIN.FAILURE, error }));

@@ -1,23 +1,27 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import React, { useEffect } from "react";
+import { withRouter, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../state/user/actions";
 import { Row, Col, Card, Form, Input, Button } from "antd";
 
 const Login = (props) => {
+  const history = useHistory();
   const { user } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const onFinish = ({ email, password }) => {
     console.log("Success:", email, password);
-    loginUser(dispatch, email, password).then(() =>
-      props.history.push("/archive")
-    );
+    loginUser(dispatch, email, password);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  // Redirect if use is already logged in
+  useEffect(() => {
+    if (!user.loading && user.data) history.push("/archive");
+  }, [history, user]);
 
   return (
     <div className="login">

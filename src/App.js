@@ -11,6 +11,7 @@ import Posts from "./pages/Posts";
 import Archive from "./pages/Archive";
 import EditPost from "./pages/EditPost";
 import Login from "./pages/Login";
+import NoMatch from "./pages/NoMatch";
 
 const { Footer, Content } = Layout;
 
@@ -20,23 +21,6 @@ const App = () => {
   useEffect(() => {
     getCurrentUser(dispatch);
   }, [dispatch]);
-  console.log(user);
-
-  const PrivateRoute = ({ component: Component, user, ...rest }) => (
-    <Route
-      {...rest}
-      render={(props) => {
-        console.log("Current user?", user);
-        return user.loading ? (
-          "Loading... checking auth..."
-        ) : user.data ? (
-          <Component {...props} />
-        ) : (
-          <Redirect push to="/login" />
-        );
-      }}
-    />
-  );
 
   return (
     <Row className="app" justify="center">
@@ -58,7 +42,8 @@ const App = () => {
               <Route path="/posts" component={Posts} />
               <Route path="/archive" component={Archive} />
               <Route path="/login" component={Login} />
-              <PrivateRoute path="/edit/*" user={user} component={EditPost} />
+              {user.data && <Route path="/edit/*" component={EditPost} />}
+              <Route component={NoMatch} />
             </Switch>
           </Content>
           <Footer>
