@@ -24,7 +24,7 @@ const Login = (props) => {
   }, [history, user]);
 
   return (
-    <div className="login">
+    <div className="login fade-in">
       <Row align="middle" justify="center">
         <Col xs={22} sm={20} md={18} lg={12}>
           <Card

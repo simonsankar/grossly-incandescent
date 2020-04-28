@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../state/posts/actions";
-import { Row, Col } from "antd";
+import { Row, Col, Skeleton } from "antd";
 import PostsTable from "../components/Posts/PostsTable";
 
 const Posts = () => {
@@ -16,7 +16,7 @@ const Posts = () => {
       <Row className="posts__table">
         <Col span={24}>
           {posts.loading ? (
-            "Loading..."
+            <Skeleton paragraph active loading={true} />
           ) : posts.data.length ? (
             <PostsTable posts={posts.data} isAuth={user.data !== null} />
           ) : (

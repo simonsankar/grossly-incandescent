@@ -11,7 +11,7 @@ const PostsTable = ({ posts, isAuth }) => {
     <Table
       size="small"
       rowKey="id"
-      className="table"
+      className="table fade-in"
       dataSource={posts}
       pagination={{ position: ["bottomCenter"], pageSize: 5 }}
       footer={() => <FireFilled style={{ color: "#8c7343" }} />}

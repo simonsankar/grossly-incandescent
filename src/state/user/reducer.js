@@ -1,6 +1,6 @@
 import { USER_LOGIN, USER_LOGOUT, GET_CURRENT_USER } from "../types";
 
-const user = (state = { loading: false, data: null, error: null }, action) => {
+const user = (state = { loading: true, data: null, error: null }, action) => {
   switch (action.type) {
     case USER_LOGIN.PENDING:
     case USER_LOGOUT.PENDING:

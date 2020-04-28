@@ -3,7 +3,16 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../state/posts/actions";
 import { logoutUser } from "../state/user/actions";
-import { Row, Col, Avatar, PageHeader, Divider, Space, Button } from "antd";
+import {
+  Row,
+  Col,
+  Avatar,
+  PageHeader,
+  Divider,
+  Space,
+  Button,
+  Skeleton,
+} from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
@@ -31,6 +40,7 @@ const Home = () => {
             title={
               user.data ? (
                 <Button
+                  className="fade-in"
                   shape="circle"
                   type="primary"
                   icon={<FontAwesomeIcon icon={faSignOutAlt} />}
@@ -38,7 +48,11 @@ const Home = () => {
                 ></Button>
               ) : (
                 <Link to="/login">
-                  <Avatar className="home__image" src={avatar} size={60} />
+                  <Avatar
+                    className="home__image fade-in pulse "
+                    src={avatar}
+                    size={60}
+                  />
                 </Link>
               )
             }
@@ -66,7 +80,7 @@ const Home = () => {
       <Row className="home__posts">
         <Col span={24}>
           {posts.loading ? (
-            "Loading..."
+            <Skeleton loading={true} active paragraph />
           ) : posts.data.length ? (
             <PostsTable posts={posts.data} isAuth={user.data !== null} />
           ) : (

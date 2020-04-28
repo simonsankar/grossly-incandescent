@@ -55,14 +55,22 @@
       word-break: break-all;
     }
   }
-  &__image > img {
-    padding: 5px;
-    height: 100%;
-    width: 100%;
-    border-radius: 100% !important;
-    transition: all ease-in 0.2s;
-    &:hover {
-      background-color: rgba(@WHITE, 0.05);
+
+  &__image {
+    // margin: 5px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    margin-left: 5px !important;
+
+    & > img {
+      padding: 5px;
+      height: 100%;
+      width: 100%;
+      border-radius: 100% !important;
+      transition: all ease-in 0.2s;
+      &:hover {
+        background-color: rgba(@WHITE, 0.05);
+      }
     }
   }
   &__posts {
