@@ -30,11 +30,12 @@ const PostsTable = ({ posts, isAuth }) => {
         key="tags"
         render={({ tags }) => (
           <span>
-            {tags.map((tag) => (
-              <Tag color="#8c7343" key={tag}>
-                {tag}
-              </Tag>
-            ))}
+            {tags &&
+              tags.map((tag) => (
+                <Tag color="#8c7343" key={tag}>
+                  {tag}
+                </Tag>
+              ))}
           </span>
         )}
       />
