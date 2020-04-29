@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getPosts } from "../state/posts/actions";
-import { logoutUser } from "../state/user/actions";
+import { getPosts } from "../../state/posts/actions";
+import { logoutUser } from "../../state/user/actions";
 import {
   Row,
   Col,
@@ -21,7 +21,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import PostsTable from "../components/Posts/PostsTable";
-import avatar from "../images/avatar.svg";
+import avatar from "../../images/avatar.svg";
 
 const Home = () => {
   const { posts, user } = useSelector((state) => state);
@@ -49,7 +49,7 @@ const Home = () => {
               ) : (
                 <Link to="/login">
                   <Avatar
-                    className="home__image fade-in pulse "
+                    className="home__image fade-in pulse"
                     src={avatar}
                     size={60}
                   />

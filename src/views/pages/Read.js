@@ -19,16 +19,14 @@ import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 
 class Read extends Component {
   state = {
-    source: "# Hello! \n ## How are ya?",
+    source: "# Hello! \n ## How are ya?\n```js const code = 0; ```",
   };
 
   componentDidMount() {
     const { pathname } = this.props.history.location;
     const id = pathname.replace("/read/", "");
-    console.log(id, this.props.posts);
     let post = filter(this.props.posts.data, (post) => post.details.url === id);
     this.setState({ source: post[0].data.text });
-    console.log(post);
     PrismJS.highlightAll();
   }
   render() {

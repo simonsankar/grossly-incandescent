@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPosts } from "../state/posts/actions";
+import { getPosts } from "../../state/posts/actions";
 import { Row, Col, Skeleton } from "antd";
 import PostsTable from "../components/Posts/PostsTable";
 

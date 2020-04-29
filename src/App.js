@@ -4,15 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCurrentUser } from "./state/user/actions";
 import { Layout, Row, Col, Spin } from "antd";
 
-import Navbar from "./components/Navigation/Navbar";
-import Home from "./pages/Home";
-import Read from "./pages/Read";
-import Posts from "./pages/Posts";
-import Archive from "./pages/Archive";
-import EditPost from "./pages/EditPost";
-import Login from "./pages/Login";
-import NoMatch from "./pages/NoMatch";
+import Navbar from "./views/components/Navigation/Navbar";
+import Home from "./views/pages/Home";
+import Read from "./views/pages/Read";
+import Posts from "./views/pages/Posts";
+import Archive from "./views/pages/Archive";
+import EditPost from "./views/pages/EditPost";
+import Login from "./views/pages/Login";
+import NoMatch from "./views/pages/NoMatch";
 import SpinnerLogo from "./images/spinner.svg";
+import CreatePost from "./views/pages/CreatePost";
 
 const { Footer, Content } = Layout;
 
@@ -83,6 +84,11 @@ const App = () => {
                 <Route path="/posts" component={Posts} />
                 <Route path="/archive" component={Archive} />
                 <Route path="/login" component={Login} />
+                <PrivateRoute
+                  path="/create"
+                  user={user}
+                  component={CreatePost}
+                />
                 <PrivateRoute path="/edit/*" user={user} component={EditPost} />
                 <Route component={NoMatch} />
               </Switch>

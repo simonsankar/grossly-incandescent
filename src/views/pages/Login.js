@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { withRouter, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser } from "../state/user/actions";
+import { loginUser } from "../../state/user/actions";
 import { Row, Col, Card, Form, Input, Button } from "antd";
 
 const Login = (props) => {
