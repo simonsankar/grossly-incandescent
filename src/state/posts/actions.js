@@ -40,14 +40,18 @@ export const getPost = (dispatch, url) => {
       .child(selectedPost[0].id)
       .getDownloadURL()
       .then((fileUrl) => {
+        console.log(fileUrl);
         fetch(fileUrl)
           .then((res) => {
-            console.log(res.text());
+            return res.text();
+          })
+          .then((data) => {
+            console.log(data);
             return dispatch({
               type: GET_POST.SUCCESS,
               payload: {
                 ...selectedPost[0],
-                text: res.text(),
+                text: data,
               },
             });
           })
