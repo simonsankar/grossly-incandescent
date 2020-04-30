@@ -1,4 +1,4 @@
-import { postsRef } from "../../api/firebase";
+import { postsRef, postsStorageRef } from "../../api/firebase";
 import { GET_POSTS, ADD_POST } from "../../state/types";
 
 export const getPosts = (dispatch, limit = 10) => {
@@ -13,10 +13,18 @@ export const getPosts = (dispatch, limit = 10) => {
   });
 };
 
-export const addPost = (dispatch, post) => {
+export const addPost = (dispatch, post, file) => {
   dispatch({ type: ADD_POST.PENDING });
-  postsRef.child(post.id).set(post, (error) => {
-    if (error) dispatch({ type: ADD_POST.FAILURE, error });
-    else dispatch({ type: ADD_POST.SUCCESS });
-  });
+  const upload = postsStorageRef.child(post.id).put(file);
+  upload.on(
+    "state_changed",
+    () => {},
+    (error) => dispatch({ type: ADD_POST.FAILURE, error }),
+    () => {
+      postsRef.child(post.id).set(post, (error) => {
+        if (error) dispatch({ type: ADD_POST.FAILURE, error });
+        else dispatch({ type: ADD_POST.SUCCESS });
+      });
+    }
+  );
 };

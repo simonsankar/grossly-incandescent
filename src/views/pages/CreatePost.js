@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../../state/posts/actions";
 import { v4 } from "uuid";
 import readingTime from "reading-time";
-import { Row, Col, Button, Form, Input } from "antd";
+import { Row, Col, Button, Form, Input, Card, message } from "antd";
 
-import MdEditor from "react-markdown-editor-lite";
-import "react-markdown-editor-lite/lib/index.css";
-import MarkdownIt from "markdown-it";
+const loading = () => {
+  message.info("Uploading your post!");
+};
+const success = () => {
+  message.success("Post was successfuly added!");
+};
 
-const mdParser = new MarkdownIt(/* Markdown-it options */);
+const error = (error) => {
+  message.error(error);
+};
 
 const CreatePost = () => {
-  const [source, setSource] = useState("");
-
+  const [file, setFile] = useState(null);
   const dispatch = useDispatch();
-  useEffect(() => {}, []);
+  const { posts } = useSelector((state) => state);
 
   const onFinish = ({ title }) => {
     const id = v4(title);
@@ -23,10 +27,6 @@ const CreatePost = () => {
 
     const post = {
       id,
-      data: {
-        readTime: readingTime(source),
-        text: source,
-      },
       details: {
         title,
         tags: [],
@@ -34,8 +34,8 @@ const CreatePost = () => {
         url: title.split(" ").join("-").toLowerCase(),
       },
     };
-
-    addPost(dispatch, post);
+    console.log(title, file);
+    addPost(dispatch, post, file);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -44,40 +44,54 @@ const CreatePost = () => {
 
   return (
     <div className="create">
-      <Row className="create__menu">
-        <Col span={24}>
-          <Form
-            layout="inline"
-            name="basic"
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-          >
-            <Form.Item
-              label="Title"
-              name="title"
-              rules={[
-                { required: true, message: "Please input your username!" },
-              ]}
+      {posts.loading && loading()}
+      {posts.error && error()}
+      {posts.uploaded && success()}
+      <Row className="create__menu" align="middle" justify="center">
+        <Col span={16}>
+          <Card className="create__form">
+            <Form
+              name="basic"
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
             >
-              <Input />
-            </Form.Item>
-
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
-            </Form.Item>
-          </Form>
+              <Form.Item
+                label="Title"
+                name="title"
+                rules={[
+                  { required: true, message: "Please input your post title!" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label=".md"
+                name="md"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your markdown file!",
+                  },
+                ]}
+              >
+                <Input
+                  type="file"
+                  onChange={(e) => {
+                    console.log(e.target.files[0]);
+                    setFile(e.target.files[0]);
+                  }}
+                />
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
+          </Card>
         </Col>
       </Row>
-      <MdEditor
-        value=""
-        renderHTML={(text) => mdParser.render(text)}
-        onChange={({ text }) => {
-          setSource(text);
-        }}
-      />
     </div>
   );
 };

@@ -28,7 +28,12 @@ export const authRef = {
     return Firebase.auth().onAuthStateChanged(func);
   },
 };
+
 // Database references
 const databaseRef = Firebase.database().ref();
 
 export const postsRef = databaseRef.child("posts");
+
+// Storage refences
+const storageRef = Firebase.storage().ref();
+export const postsStorageRef = storageRef.child("posts");

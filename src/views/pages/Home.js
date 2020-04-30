@@ -81,7 +81,7 @@ const Home = () => {
         <Col span={24}>
           {posts.loading ? (
             <Skeleton loading={true} active paragraph />
-          ) : posts.data.length ? (
+          ) : posts.data && posts.data.length ? (
             <PostsTable posts={posts.data} isAuth={user.data !== null} />
           ) : (
             "No posts found :("
