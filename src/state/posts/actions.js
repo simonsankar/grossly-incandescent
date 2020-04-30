@@ -1,5 +1,6 @@
 import { postsRef, postsStorageRef } from "../../api/firebase";
-import { GET_POSTS, ADD_POST } from "../../state/types";
+import { GET_POSTS, ADD_POST, GET_POST } from "../../state/types";
+import { filter } from "lodash";
 
 export const getPosts = (dispatch, limit = 10) => {
   console.log("Limit is", limit);
@@ -27,4 +28,31 @@ export const addPost = (dispatch, post, file) => {
       });
     }
   );
+};
+
+export const getPost = (dispatch, url) => {
+  dispatch({ type: GET_POST });
+  return postsRef.orderByChild("url").on("value", (snapshot) => {
+    const selectedPost = filter(snapshot.val(), (post) => {
+      return post.details.url === url;
+    });
+    postsStorageRef
+      .child(selectedPost[0].id)
+      .getDownloadURL()
+      .then((fileUrl) => {
+        fetch(fileUrl)
+          .then((res) => {
+            console.log(res.text());
+            return dispatch({
+              type: GET_POST.SUCCESS,
+              payload: {
+                ...selectedPost[0],
+                text: res.text(),
+              },
+            });
+          })
+          .catch((error) => dispatch({ type: GET_POST.FAILURE, error }));
+      })
+      .catch((error) => dispatch({ type: GET_POST.FAILURE, error }));
+  });
 };

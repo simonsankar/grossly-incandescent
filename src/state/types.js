@@ -2,7 +2,9 @@ import actionTypeCreator from "./actionTypeCreator";
 
 // Posts
 export const GET_POSTS = actionTypeCreator("GET_POSTS");
+
 export const ADD_POST = actionTypeCreator("ADD_POST");
+export const GET_POST = actionTypeCreator("GET_POST");
 
 // User (me)
 export const USER_LOGIN = actionTypeCreator("USER_LOGIN");

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { filter } from "lodash";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getPost } from "../../state/posts/actions";
 import ReactMarkdown from "react-markdown";
 // PrismJS
 import PrismJS from "prismjs";
@@ -17,26 +17,24 @@ import "prismjs/plugins/inline-color/prism-inline-color.min.js";
 import "prismjs/plugins/line-numbers/prism-line-numbers.min.js";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 
-class Read extends Component {
-  state = {
-    source: "# Hello! \n ## How are ya?\n```js const code = 0; ```",
-  };
+const Read = () => {
+  const location = useLocation();
+  const { posts } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-  componentDidMount() {
-    const { pathname } = this.props.history.location;
-    const id = pathname.replace("/read/", "");
-    let post = filter(this.props.posts.data, (post) => post.details.url === id);
-    this.setState({ source: post[0].data.text });
+  useEffect(() => {
+    const { pathname } = location;
+    const postUrl = pathname.replace("/read/", "");
+    getPost(dispatch, postUrl);
+
     PrismJS.highlightAll();
-  }
-  render() {
-    const { source } = this.state;
-    return (
-      <div className="post">
-        {source !== "" ? <ReactMarkdown source={source} /> : "loading..."}
-      </div>
-    );
-  }
-}
-const mapStateToProps = ({ posts }) => ({ posts });
-export default withRouter(connect(mapStateToProps)(Read));
+  }, [dispatch, location]);
+
+  return (
+    <div className="post">
+      {/* {source !== "" ? <ReactMarkdown source={source} /> : "loading..."} */}
+    </div>
+  );
+};
+
+export default Read;
