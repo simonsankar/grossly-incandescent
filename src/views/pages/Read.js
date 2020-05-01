@@ -6,7 +6,24 @@ import ReactMarkdown from "react-markdown";
 // PrismJS
 import PrismJS from "prismjs";
 // Languages
-import "prismjs/components/prism-jsx.min";
+import "prismjs/components/prism-bash";
+import "prismjs/components/prism-c";
+import "prismjs/components/prism-css";
+import "prismjs/components/prism-dart";
+import "prismjs/components/prism-docker";
+import "prismjs/components/prism-git";
+import "prismjs/components/prism-go";
+import "prismjs/components/prism-graphql";
+import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-json";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-less";
+import "prismjs/components/prism-markdown";
+import "prismjs/components/prism-ocaml";
+import "prismjs/components/prism-reason";
+import "prismjs/components/prism-rust";
+import "prismjs/components/prism-sass";
+import "prismjs/components/prism-yaml";
 // Plugins
 import "prismjs/plugins/toolbar/prism-toolbar.min.js";
 import "prismjs/plugins/toolbar/prism-toolbar.css";
@@ -16,8 +33,6 @@ import "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js";
 import "prismjs/plugins/inline-color/prism-inline-color.min.js";
 import "prismjs/plugins/line-numbers/prism-line-numbers.min.js";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
-
-import testMd from "./test.md";
 
 const Read = () => {
   const location = useLocation();

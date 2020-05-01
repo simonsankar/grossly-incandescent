@@ -28,7 +28,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getPosts(dispatch, 3);
+    getPosts(dispatch, 10);
   }, [dispatch]);
 
   return (
@@ -81,10 +81,8 @@ const Home = () => {
         <Col span={24}>
           {posts.loading ? (
             <Skeleton loading={true} active paragraph />
-          ) : posts.data && posts.data.length ? (
-            <PostsTable posts={posts.data} isAuth={user.data !== null} />
           ) : (
-            "No posts found :("
+            <PostsTable posts={posts.data} isAuth={user.data !== null} />
           )}
         </Col>
       </Row>

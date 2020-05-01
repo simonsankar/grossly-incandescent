@@ -1,19 +1,21 @@
 .post {
   padding: 20px;
-
+  background-color: rgba(#fafafa, 0.8);
+  font-family: CharterITC;
+  h1 {
+    font-size: 23px;
+  }
   h1,
   h2,
   h3,
-  h4 {
-    text-decoration: underline;
-    -webkit-text-decoration-skip: none;
-    text-decoration-color: @PRIMARY_COLOUR;
+  h4,
+  h5 {
+    color: darken(@SECONDARY_COLOUR, 10%);
   }
 
   p,
   li {
-    color: rgba(@SECONDARY_COLOUR, 0.8);
-    font-family: Georgia, "Times New Roman", Times, serif;
+    color: rgba(@SECONDARY_COLOUR, 0.9);
     font-size: 17px;
   }
 }

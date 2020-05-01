@@ -1,22 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Table, Tag, Button, Space } from "antd";
 import { FireFilled, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const { Column } = Table;
 
 const PostsTable = ({ posts, isAuth }) => {
+  const history = useHistory();
   console.log(posts);
   return (
     <Table
-      size="small"
-      rowKey="id"
       className="table fade-in"
+      size="small"
+      emptyText="No Posts"
+      rowKey="id"
       dataSource={posts}
       pagination={{ position: ["bottomCenter"], pageSize: 5 }}
       footer={() => <FireFilled style={{ color: "#8c7343" }} />}
     >
       <Column
+        className="table__title-column"
         title="title"
         dataIndex="details"
         key="title"

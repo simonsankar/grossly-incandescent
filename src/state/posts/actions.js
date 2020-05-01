@@ -9,7 +9,7 @@ export const getPosts = (dispatch, limit = 10) => {
     console.log(snapshot.val());
     return dispatch({
       type: GET_POSTS.SUCCESS,
-      payload: Object.values(snapshot.val()),
+      payload: snapshot.val() ? Object.values(snapshot.val()) : [],
     });
   });
 };
@@ -31,7 +31,7 @@ export const addPost = (dispatch, post, file) => {
 };
 
 export const getPost = (dispatch, url) => {
-  dispatch({ type: GET_POST });
+  dispatch({ type: GET_POST.PENDING });
   return postsRef.orderByChild("url").on("value", (snapshot) => {
     const selectedPost = filter(snapshot.val(), (post) => {
       return post.details.url === url;
@@ -40,13 +40,11 @@ export const getPost = (dispatch, url) => {
       .child(selectedPost[0].id)
       .getDownloadURL()
       .then((fileUrl) => {
-        console.log(fileUrl);
         fetch(fileUrl)
           .then((res) => {
             return res.text();
           })
           .then((data) => {
-            console.log(data);
             return dispatch({
               type: GET_POST.SUCCESS,
               payload: {
