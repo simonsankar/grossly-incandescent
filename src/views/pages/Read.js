@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../../state/posts/actions";
@@ -34,6 +34,19 @@ import "prismjs/plugins/inline-color/prism-inline-color.min.js";
 import "prismjs/plugins/line-numbers/prism-line-numbers.min.js";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 
+function flatten(text, child) {
+  return typeof child === "string"
+    ? text + child
+    : React.Children.toArray(child.props.children).reduce(flatten, text);
+}
+
+function HeadingRenderer(props) {
+  var children = React.Children.toArray(props.children);
+  var text = children.reduce(flatten, "");
+  var slug = text.toLowerCase().replace(/\W/g, "-");
+  return React.createElement("h" + props.level, { id: slug }, props.children);
+}
+
 const Read = () => {
   const location = useLocation();
   const { posts } = useSelector((state) => state);
@@ -41,6 +54,7 @@ const Read = () => {
 
   useEffect(() => {
     // Fetch md file
+    console.log(location);
     const { pathname } = location;
     const postUrl = pathname.replace("/read/", "");
     getPost(dispatch, postUrl);
@@ -53,10 +67,21 @@ const Read = () => {
 
   return (
     <div className="post">
+      <button
+        onClick={() => {
+          console.log(location.hash, document.getElementById(location.hash));
+        }}
+      >
+        click
+      </button>
       {posts.loading ? (
         "loading post"
       ) : posts.selected ? (
-        <ReactMarkdown source={posts.selected.text} escapeHtml={false} />
+        <ReactMarkdown
+          source={posts.selected.text}
+          escapeHtml={false}
+          renderers={{ heading: HeadingRenderer }}
+        />
       ) : (
         "NOTHING..."
       )}
