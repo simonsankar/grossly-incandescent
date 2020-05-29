@@ -1,4 +1,10 @@
-import { GET_POSTS, ADD_POST, DELETE_POST, GET_POST } from "../types";
+import {
+  GET_POSTS,
+  ADD_POST,
+  DELETE_POST,
+  GET_POST,
+  CLEAR_STATUSES,
+} from "../types";
 
 const posts = (
   state = {
@@ -31,6 +37,12 @@ const posts = (
       };
 
     case GET_POSTS.SUCCESS:
+      return {
+        loading: false,
+        data: action.payload,
+        error: null,
+        uploaded: false,
+      };
     case ADD_POST.SUCCESS:
       return {
         loading: false,
@@ -63,6 +75,15 @@ const posts = (
         error: action.error,
         uploaded: false,
         deleted: false,
+      };
+
+    case CLEAR_STATUSES:
+      return {
+        ...state,
+        loading: false,
+        uploaded: false,
+        error: null,
+        deleted: null,
       };
     default:
       return state;

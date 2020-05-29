@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../state/posts/actions";
+import { addPost, clearStatuses } from "../../state/posts/actions";
 import { v4 } from "uuid";
 import readingTime from "reading-time";
 import { Row, Col, Button, Form, Input, Card, message } from "antd";
@@ -9,7 +9,7 @@ const loading = () => {
   message.info("Uploading your post!");
 };
 const success = () => {
-  message.success("Post was successful;y added!");
+  message.success("Post was successfully added!");
 };
 
 const error = (error) => {
@@ -20,6 +20,12 @@ const CreatePost = () => {
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state);
+
+  useEffect(() => {
+    return () => {
+      clearStatuses(dispatch);
+    };
+  }, [dispatch]);
 
   const onFinish = ({ title }) => {
     const id = v4(title);

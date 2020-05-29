@@ -1,5 +1,11 @@
 import { postsRef, postsStorageRef } from "../../api/firebase";
-import { GET_POSTS, ADD_POST, DELETE_POST, GET_POST } from "../../state/types";
+import {
+  GET_POSTS,
+  ADD_POST,
+  DELETE_POST,
+  GET_POST,
+  CLEAR_STATUSES,
+} from "../../state/types";
 import { filter } from "lodash";
 
 export const getPosts = (dispatch, limit = 10) => {
@@ -72,3 +78,5 @@ export const getPost = (dispatch, url) => {
       .catch((error) => dispatch({ type: GET_POST.FAILURE, error }));
   });
 };
+
+export const clearStatuses = (dispatch) => dispatch({ type: CLEAR_STATUSES });
