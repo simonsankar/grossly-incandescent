@@ -23,13 +23,11 @@ const App = () => {
   useEffect(() => {
     getCurrentUser(dispatch);
   }, [dispatch]);
-  console.log(user);
 
   const PrivateRoute = ({ component: Component, user, ...rest }) => (
     <Route
       {...rest}
       render={(props) => {
-        console.log("Current user?", user);
         return user.loading && !user.data ? (
           "Loading... checking auth..."
         ) : !user.loading && user.data ? (

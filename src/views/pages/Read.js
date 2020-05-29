@@ -1,7 +1,8 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../../state/posts/actions";
+import { Skeleton } from "antd";
 import ReactMarkdown from "react-markdown";
 // PrismJS
 import PrismJS from "prismjs";
@@ -67,15 +68,12 @@ const Read = () => {
 
   return (
     <div className="post">
-      <button
-        onClick={() => {
-          console.log(location.hash, document.getElementById(location.hash));
-        }}
-      >
-        click
-      </button>
       {posts.loading ? (
-        "loading post"
+        <>
+          <Skeleton loading={true} active paragraph />
+          <Skeleton loading={true} active paragraph />
+          <Skeleton loading={true} active paragraph />
+        </>
       ) : posts.selected ? (
         <ReactMarkdown
           source={posts.selected.text}

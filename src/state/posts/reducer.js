@@ -1,4 +1,4 @@
-import { GET_POSTS, ADD_POST, GET_POST } from "../types";
+import { GET_POSTS, ADD_POST, DELETE_POST, GET_POST } from "../types";
 
 const posts = (
   state = {
@@ -6,6 +6,7 @@ const posts = (
     data: [],
     error: null,
     uploaded: false,
+    deleted: null,
     selected: {},
   },
   action
@@ -20,6 +21,13 @@ const posts = (
         error: null,
         uploaded: false,
         selected: {},
+      };
+    case DELETE_POST.PENDING:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        deleted: null,
       };
 
     case GET_POSTS.SUCCESS:
@@ -37,15 +45,24 @@ const posts = (
         selected: action.payload,
         error: null,
       };
+    case DELETE_POST.SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        deleted: true,
+      };
 
     case GET_POSTS.FAILURE:
     case ADD_POST.FAILURE:
     case GET_POST.FAILURE:
+    case DELETE_POST.FAILURE:
       return {
         ...state,
         loading: false,
         error: action.error,
         uploaded: false,
+        deleted: false,
       };
     default:
       return state;

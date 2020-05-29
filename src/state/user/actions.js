@@ -25,7 +25,6 @@ export const logoutUser = (dispatch) => {
 export const getCurrentUser = (dispatch) => {
   dispatch({ type: GET_CURRENT_USER.PENDING });
   authRef.getCurrentUser((user) => {
-    console.log("Got current user val", user);
     dispatch({ type: GET_CURRENT_USER.SUCCESS, payload: user });
   });
 };

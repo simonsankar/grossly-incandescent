@@ -1,3 +1,21 @@
 .ant-table {
   border-radius: 10px;
 }
+.ant-skeleton-title,
+.ant-skeleton-paragraph > li {
+  background: rgba(@SECONDARY_COLOUR, 0.4) 37%;
+}
+
+.ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-title,
+.ant-skeleton.ant-skeleton-active
+  .ant-skeleton-content
+  .ant-skeleton-paragraph
+  > li {
+  background: linear-gradient(
+    90deg,
+    rgba(@SECONDARY_COLOUR, 0.2) 25%,
+    rgba(@SECONDARY_COLOUR, 0.4) 37%,
+    rgba(@SECONDARY_COLOUR, 0.2) 63%
+  );
+  animation: ant-skeleton-loading 1.4s ease infinite !important;
+}

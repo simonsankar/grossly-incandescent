@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import {
@@ -6,10 +7,12 @@ import {
   FireFilled,
   FileTextOutlined,
   ContainerOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 
 const Navbar = () => {
   const [current, setCurrent] = useState("home");
+  const { user } = useSelector((state) => state);
 
   return (
     <Menu
@@ -37,6 +40,12 @@ const Navbar = () => {
         <Link to="/projects">Projects</Link>
         <BookOutlined />
       </Menu.Item>
+      {user.data !== null ? (
+        <Menu.Item key="create">
+          <Link to="/create">Create</Link>
+          <EditOutlined />
+        </Menu.Item>
+      ) : null}
     </Menu>
   );
 };

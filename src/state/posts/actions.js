@@ -1,5 +1,5 @@
 import { postsRef, postsStorageRef } from "../../api/firebase";
-import { GET_POSTS, ADD_POST, GET_POST } from "../../state/types";
+import { GET_POSTS, ADD_POST, DELETE_POST, GET_POST } from "../../state/types";
 import { filter } from "lodash";
 
 export const getPosts = (dispatch, limit = 10) => {
@@ -28,6 +28,20 @@ export const addPost = (dispatch, post, file) => {
       });
     }
   );
+};
+
+export const deletePost = (dispatch, id) => {
+  dispatch({ type: DELETE_POST.PENDING });
+  return postsStorageRef
+    .child(id)
+    .delete()
+    .then(() => {
+      return postsRef.child(id).remove((error) => {
+        if (error) return dispatch({ type: DELETE_POST.FAILURE });
+        else return dispatch({ type: DELETE_POST.SUCCESS, error });
+      });
+    })
+    .catch((error) => dispatch({ type: DELETE_POST.SUCCESS, error }));
 };
 
 export const getPost = (dispatch, url) => {

@@ -9,7 +9,7 @@ const loading = () => {
   message.info("Uploading your post!");
 };
 const success = () => {
-  message.success("Post was successfuly added!");
+  message.success("Post was successful;y added!");
 };
 
 const error = (error) => {
@@ -46,7 +46,7 @@ const CreatePost = () => {
     <div className="create">
       {posts.loading && loading()}
       {posts.error && error()}
-      {posts.uploaded && success()}
+      {posts.uploaded ? success() : null}
       <Row className="create__menu" align="middle" justify="center">
         <Col span={16}>
           <Card className="create__form">
