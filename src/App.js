@@ -52,7 +52,9 @@ const App = () => {
       >
         <Layout>
           <Navbar />
-          <Content style={{ minHeight: "calc(100vh - 106px)" }}>
+          <Content
+            style={{ minHeight: "calc(100vh - 106px)", position: "relative" }}
+          >
             {user.loading ? (
               <Spin
                 style={{
