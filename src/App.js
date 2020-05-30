@@ -12,6 +12,7 @@ import Archive from "./views/pages/Archive";
 import EditPost from "./views/pages/EditPost";
 import Login from "./views/pages/Login";
 import NoMatch from "./views/pages/NoMatch";
+import Projects from "./views/pages/Projects";
 import SpinnerLogo from "./images/spinner.svg";
 import CreatePost from "./views/pages/CreatePost";
 
@@ -83,6 +84,7 @@ const App = () => {
                 <Route path="/read" component={Read} />
                 <Route path="/posts" component={Posts} />
                 <Route path="/archive" component={Archive} />
+                <Route path="/projects" component={Projects} />
                 <Route path="/login" component={Login} />
                 <PrivateRoute
                   path="/create"

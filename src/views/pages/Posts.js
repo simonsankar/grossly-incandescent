@@ -12,7 +12,10 @@ const Posts = () => {
     getPosts(dispatch, 10);
   }, [dispatch]);
   return (
-    <div className="posts">
+    <div className="posts fade-in">
+      <div className="posts__header">
+        <h1>Incoherent scribblings</h1>
+      </div>
       <Row className="posts__table">
         <Col span={24}>
           {posts.loading ? (
